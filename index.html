@@ -588,7 +588,11 @@
 
     /* DONATION STATEMENT - FLEXBOX LAYOUT */
     .donation-statement {
-      display: flex;
+      /* Keep this notice visible even if the page is embedded in another site
+         with a conflicting rule for donation-statement. */
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
       align-items: flex-start;
       gap: 10px;
       background: #f5f0eb;
@@ -599,6 +603,8 @@
       color: #1a4a2a;
       font-size: 14px;
       line-height: 1.6;
+      position: relative;
+      z-index: 1;
     }
 
     .donation-statement i {
@@ -1256,6 +1262,17 @@
         submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Registration';
 
         alert('Something went wrong. Please try again or contact the church office.');
+      }
+    });
+
+    // Make sure the donation notice is rendered on the initial page load too.
+    // This also protects it when the page is embedded by a host that changes
+    // visibility or display rules after the HTML has loaded.
+    document.addEventListener('DOMContentLoaded', function() {
+      var donationStatement = document.getElementById('donationStatement');
+      if (donationStatement) {
+        donationStatement.hidden = false;
+        donationStatement.style.display = 'flex';
       }
     });
   </script>
