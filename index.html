@@ -586,7 +586,7 @@
       margin-right: 3px;
     }
 
-    /* Donation statement styling */
+    /* DONATION STATEMENT STYLES - NO display:none */
     .donation-statement {
       font-size: 0.9rem;
       color: #1a4a2a;
@@ -596,6 +596,9 @@
       border-radius: 8px;
       border-left: 4px solid #c9a96e;
       font-style: italic;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
     }
 
     .donation-statement i {
@@ -782,12 +785,10 @@
             <i class="fas fa-info-circle"></i> <span id="paymentDetailsNote">Please send the fee to the above number and share the screenshot with us.</span>
           </p>
 
-          <!-- DONATION STATEMENT - HARDCODED, NO JAVASCRIPT CONTROL -->
-          <div class="donation-statement">
-            <i class="fas fa-hand-holding-heart"></i>
-            <span>
-              If you feel led to support this vision, we welcome your voluntary financial contributions to help advance and strengthen this ministry.
-            </span>
+          <!-- DONATION STATEMENT - HARDCODED, RIGHT HERE -->
+          <div style="font-size: 0.9rem; color: #1a4a2a; margin-top: 1.2rem; padding: 0.8rem 1rem; background: rgba(201, 169, 110, 0.1); border-radius: 8px; border-left: 4px solid #c9a96e; font-style: italic; display: block !important;">
+            <i class="fas fa-hand-holding-heart" style="color: #c9a96e; margin-right: 8px;"></i>
+            <span>If you feel led to support this vision, we welcome your voluntary financial contributions to help advance and strengthen this ministry.</span>
           </div>
           <!-- END DONATION STATEMENT -->
 
@@ -886,7 +887,7 @@
   </div>
 
   <script>
-    // LANGUAGE TOGGLE - Only for form fields, NOT the donation statement
+    // LANGUAGE TOGGLE
     var currentLang = 'en';
     var filesUploaded = false;
 
