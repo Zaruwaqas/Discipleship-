@@ -597,14 +597,17 @@
       border-left: 4px solid #c9a96e;
       font-style: italic;
     }
+
     .donation-statement i {
       color: #c9a96e;
       margin-right: 8px;
     }
+
     .lang-urdu .donation-statement {
       border-left: none;
       border-right: 4px solid #c9a96e;
     }
+
     .lang-urdu .donation-statement i {
       margin-right: 0;
       margin-left: 8px;
@@ -1083,7 +1086,7 @@
       document.getElementById('optJazzCash').textContent = t.optJazzCash;
       document.getElementById('paymentLabel').textContent = t.paymentLabel;
       document.getElementById('paymentDetailsNote').textContent = t.paymentDetailsNote;
-      
+
       // DONATION STATEMENT - Update the text
       document.getElementById('donationStatementText').textContent = t.donationStatement;
 
@@ -1131,7 +1134,7 @@
         return;
       }
 
-      const formUrl = `https://docs.google.com/forms/d/${GOOGLE_FORM_ID}/viewform?usp=pp_url&${WHATSAPP_FIELD_ID}=${encodeURIComponent(whatsappNumber)}`;
+      const formUrl = 'https://docs.google.com/forms/d/' + GOOGLE_FORM_ID + '/viewform?usp=pp_url&' + WHATSAPP_FIELD_ID + '=' + encodeURIComponent(whatsappNumber);
 
       const newWindow = window.open(formUrl, '_blank', 'width=600,height=700,scrollbars=yes');
 
@@ -1144,7 +1147,7 @@
       document.getElementById('fileStatusText').textContent = 
         currentLang === 'ur' ? '📤 دستاویزات اپ لوڈ کرنے کے لیے نیا ٹیب کھل گیا ہے۔ اپ لوڈ مکمل کرنے کے بعد یہاں واپس آئیں۔' : '📤 A new tab has opened to upload your documents. Please return here after uploading.';
 
-      setTimeout(() => {
+      setTimeout(function() {
         const successMsg = document.getElementById('uploadSuccessMessage');
         successMsg.style.display = 'block';
         filesUploaded = true;
@@ -1157,7 +1160,7 @@
       }, 30000);
 
       if (newWindow) {
-        const checkWindow = setInterval(() => {
+        var checkWindow = setInterval(function() {
           if (newWindow.closed) {
             clearInterval(checkWindow);
             const successMsg = document.getElementById('uploadSuccessMessage');
@@ -1178,20 +1181,20 @@
     // FORM SUBMISSION
     // ============================================
 
-    const form = document.getElementById('discipleForm');
-    const thankYouDiv = document.getElementById('thankYou');
-    const loadingDiv = document.getElementById('loading');
-    const submitBtn = document.getElementById('submitBtn');
-    const thankYouName = document.getElementById('thankYouName');
-    const displayMonthlyFee = document.getElementById('displayMonthlyFee');
-    const displayPaymentMethod = document.getElementById('displayPaymentMethod');
+    var form = document.getElementById('discipleForm');
+    var thankYouDiv = document.getElementById('thankYou');
+    var loadingDiv = document.getElementById('loading');
+    var submitBtn = document.getElementById('submitBtn');
+    var thankYouName = document.getElementById('thankYouName');
+    var displayMonthlyFee = document.getElementById('displayMonthlyFee');
+    var displayPaymentMethod = document.getElementById('displayPaymentMethod');
 
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnVkev-iLQuxBsnSlKPEIGl7-vYi03M7V3MsIQuJDcX2zaIXBTr2Ldh2UD9r1mEzu-2g/exec';
+    var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnVkev-iLQuxBsnSlKPEIGl7-vYi03M7V3MsIQuJDcX2zaIXBTr2Ldh2UD9r1mEzu-2g/exec';
 
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
 
-      const filesUploadedHidden = document.getElementById('filesUploaded').value === 'true';
+      var filesUploadedHidden = document.getElementById('filesUploaded').value === 'true';
 
       if (!filesUploaded && !filesUploadedHidden) {
         alert(currentLang === 'ur' ? 'براہ کرم اپنی دستاویزات اپ لوڈ کریں (شناختی کارڈ + تصویر)' : 'Please upload your documents (CNIC + Photo)');
@@ -1203,19 +1206,19 @@
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + (currentLang === 'ur' ? 'جمع کر رہے ہیں...' : 'Submitting...');
 
       try {
-        const monthlyFeeRadios = document.querySelectorAll('input[name="monthlyFee"]');
-        let monthlyFee = '';
-        for (const radio of monthlyFeeRadios) {
-          if (radio.checked) monthlyFee = radio.value;
+        var monthlyFeeRadios = document.querySelectorAll('input[name="monthlyFee"]');
+        var monthlyFee = '';
+        for (var i = 0; i < monthlyFeeRadios.length; i++) {
+          if (monthlyFeeRadios[i].checked) monthlyFee = monthlyFeeRadios[i].value;
         }
 
-        const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
-        let paymentMethod = '';
-        for (const radio of paymentRadios) {
-          if (radio.checked) paymentMethod = radio.value;
+        var paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+        var paymentMethod = '';
+        for (var j = 0; j < paymentRadios.length; j++) {
+          if (paymentRadios[j].checked) paymentMethod = paymentRadios[j].value;
         }
 
-        const formData = {
+        var formData = {
           fullName: document.getElementById('fullName').value.trim(),
           fathersName: document.getElementById('fathersName').value.trim(),
           dateOfBirth: document.getElementById('dateOfBirth').value,
@@ -1255,7 +1258,7 @@
         submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ' + (currentLang === 'ur' ? 'رجسٹریشن جمع کریں' : 'Submit Registration');
 
         thankYouName.textContent = formData.fullName;
-        displayMonthlyFee.textContent = `PKR ${formData.monthlyFee}/month`;
+        displayMonthlyFee.textContent = 'PKR ' + formData.monthlyFee + '/month';
         displayPaymentMethod.textContent = formData.paymentMethod;
 
         form.classList.add('hidden');
