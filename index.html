@@ -586,6 +586,30 @@
       margin-right: 3px;
     }
 
+    /* Donation statement styling */
+    .donation-statement {
+      font-size: 0.9rem;
+      color: #1a4a2a;
+      margin-top: 1.2rem;
+      padding: 0.8rem 1rem;
+      background: rgba(201, 169, 110, 0.1);
+      border-radius: 8px;
+      border-left: 4px solid #c9a96e;
+      font-style: italic;
+    }
+    .donation-statement i {
+      color: #c9a96e;
+      margin-right: 8px;
+    }
+    .lang-urdu .donation-statement {
+      border-left: none;
+      border-right: 4px solid #c9a96e;
+    }
+    .lang-urdu .donation-statement i {
+      margin-right: 0;
+      margin-left: 8px;
+    }
+
     @media (max-width: 600px) {
       .form-body {
         padding: 1.5rem;
@@ -629,30 +653,6 @@
       .footer .social-links a {
         font-size: 1.2rem;
       }
-    }
-
-    /* Donation statement styling */
-    .donation-statement {
-      font-size: 0.9rem;
-      color: #1a4a2a;
-      margin-top: 1.2rem;
-      padding: 0.8rem 1rem;
-      background: rgba(201, 169, 110, 0.1);
-      border-radius: 8px;
-      border-left: 4px solid #c9a96e;
-      font-style: italic;
-    }
-    .donation-statement i {
-      color: #c9a96e;
-      margin-right: 8px;
-    }
-    .lang-urdu .donation-statement {
-      border-left: none;
-      border-right: 4px solid #c9a96e;
-    }
-    .lang-urdu .donation-statement i {
-      margin-right: 0;
-      margin-left: 8px;
     }
   </style>
 </head>
@@ -789,9 +789,9 @@
           </p>
 
           <!-- ============================================ -->
-          <!-- DONATION STATEMENT (NEW)                     -->
+          <!-- DONATION STATEMENT                          -->
           <!-- ============================================ -->
-          <div class="donation-statement" id="donationStatementDiv">
+          <div class="donation-statement">
             <i class="fas fa-hand-holding-heart"></i>
             <span id="donationStatementText">If you feel led to support this vision, we welcome your voluntary financial contributions to help advance and strengthen this ministry.</span>
           </div>
@@ -1010,7 +1010,8 @@
           optJazzCash: 'جاز کیش',
           paymentLabel: 'ایزی پیزا / جاز کیش نمبر:',
           paymentDetailsNote: 'براہ کرم فیس مذکورہ نمبر پر بھیجیں اور اسکرین شاٹ ہمیں شیئر کریں۔',
-          donationStatement: 'اگر آپ اس وژن کی حمایت کرنے کے لیے رہنمائی محسوس کرتے ہیں، تو ہم اس وزارت کو آگے بڑھانے اور مضبوط کرنے کے لیے آپ کے رضاکارانہ مالی تعاون کا خیرمقدم کرتے ہیں۔',
+          // CORRECTED URDU DONATION STATEMENT - Using "کرنا" instead of "دینا"
+          donationStatement: 'اگر آپ اس خدمت میں مالی تعاون کرنا چاہتے ہیں تو ہم آپ کا خیر مقدم کرتے ہیں۔',
           secSpiritual: 'آپ کا روحانی سفر',
           lblWhyDisciple: '17. آپ شاگرد کیوں بننا چاہتے ہیں؟',
           lblGifts: '18. آپ کی روحانی نعمت',
@@ -1036,6 +1037,7 @@
 
       const t = translations[isUrdu ? 'ur' : 'en'];
 
+      // Update header
       if (isUrdu) {
         document.getElementById('headerTitle').innerHTML = t.headerTitle;
       } else {
@@ -1048,6 +1050,8 @@
 
       document.getElementById('foundationName').textContent = t.headerSubtitle;
       document.getElementById('headerVerse').textContent = t.headerVerse;
+
+      // Personal Information
       document.getElementById('secPersonal').textContent = t.secPersonal;
       document.getElementById('lblFullName').innerHTML = t.lblFullName + ' <span class="required">*</span>';
       document.getElementById('lblFatherName').innerHTML = t.lblFatherName + ' <span class="required">*</span>';
@@ -1059,12 +1063,16 @@
       document.getElementById('lblMobile').innerHTML = t.lblMobile + ' <span class="required">*</span>';
       document.getElementById('lblWhatsApp').innerHTML = t.lblWhatsApp + ' <span class="required">*</span>';
       document.getElementById('lblEmail').innerHTML = t.lblEmail + ' <span class="required">*</span>';
+
+      // Church Information
       document.getElementById('secChurch').textContent = t.secChurch;
       document.getElementById('lblChurchName').innerHTML = t.lblChurchName + ' <span class="required">*</span>';
       document.getElementById('lblRole').textContent = t.lblRole;
       document.getElementById('lblChurchAddress').innerHTML = t.lblChurchAddress + ' <span class="required">*</span>';
       document.getElementById('lblPastor').innerHTML = t.lblPastor + ' <span class="required">*</span>';
       document.getElementById('lblPastorContact').innerHTML = t.lblPastorContact + ' <span class="required">*</span>';
+
+      // Fees
       document.getElementById('secFees').textContent = t.secFees;
       document.getElementById('lblRegFee').innerHTML = t.lblRegFee + ' <span class="required">*</span>';
       document.getElementById('regFeeNote').textContent = t.regFeeNote;
@@ -1076,18 +1084,28 @@
       document.getElementById('optJazzCash').textContent = t.optJazzCash;
       document.getElementById('paymentLabel').textContent = t.paymentLabel;
       document.getElementById('paymentDetailsNote').textContent = t.paymentDetailsNote;
+      
+      // DONATION STATEMENT - Corrected Urdu translation
       document.getElementById('donationStatementText').textContent = t.donationStatement;
+
+      // Spiritual Journey
       document.getElementById('secSpiritual').textContent = t.secSpiritual;
       document.getElementById('lblWhyDisciple').textContent = t.lblWhyDisciple;
       document.getElementById('lblGifts').textContent = t.lblGifts;
       document.getElementById('lblPrayer').textContent = t.lblPrayer;
+
+      // Uploads
       document.getElementById('secUploads').textContent = t.secUploads;
       document.getElementById('fileStatusText').textContent = t.fileStatusText;
       document.getElementById('uploadBtnText').textContent = t.uploadBtnText;
       document.getElementById('uploadNote').textContent = t.uploadNote;
       document.getElementById('uploadSuccessText').textContent = t.uploadSuccessText;
+
+      // Submit & Loading
       document.getElementById('loadingText').textContent = t.loadingText;
       document.getElementById('submitText').textContent = t.submitText;
+
+      // Thank You
       document.getElementById('thankTitle').textContent = t.thankTitle;
       document.getElementById('thankYouPrefix').innerHTML = t.thankYouPrefix + ' <span id="thankYouName"></span>!';
       document.getElementById('thankYouMessage').textContent = t.thankYouMessage;
